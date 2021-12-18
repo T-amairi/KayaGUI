@@ -1,24 +1,31 @@
 CC = g++
-CCFLAGS = -Wall -Werror -std=c++11 -g
-LIBFLAGS = -lsfml-graphics -lsfml-window -lsfml-system 
-SRC = $(wildcard src/*.cc)
-OBJ = $(SRC:.cc=.o)
-TST = $(wildcard tests/*.cc)
-OBJ_TEST = $(filter-out src/main.o, $(OBJ)) $(TST:.cc=.o)
+CCFLAGS = -Wall -Werror -std=c++17 -g
+LIBFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lm
+SRC = $(wildcard src/*.cpp)
+OBJ = $(SRC:.cpp=.o)
+TST = $(wildcard tests/*.cpp)
+OBJ_TEST = $(filter-out src/main.o, $(OBJ)) $(TST:.cpp=.o)
+EXEC = kayaGUI.out
 
-all: kayaGUI
+all: $(EXEC)
 
+#TEST
 testcase:
 	cd tests; make
 
-kayaGUI: $(OBJ)
+#EXEC
+$(EXEC): $(OBJ)
 	$(CC) $^ $(LIBFLAGS) -o $@
 
-%.o: %.cc
+%.o: %.cpp
 	$(CC) $(CCFLAGS) -c $< -o $@
 
+#CLEAN
+cleanall:
+	rm -f $(OBJ) $(EXEC)
+	cd tests; make clean
 clean:
-	rm -f $(OBJ) kayaGUI
+	rm -f $(OBJ) $(EXEC)
 
 cleantest:
 	cd tests; make clean
