@@ -11,8 +11,9 @@ const sf::Vector2f PlotAxes::MARGIN{40.0, 20.0};
 /**
  * \brief Constructor for PlotAxes class
  */
-PlotAxes::PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color)
-:axes_color_(axes_color), scale_color_(scale_color), font_(font), font_color_(font_color),x_range_(), y_range_(){}
+PlotAxes::PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color, 
+string x_label, string y_label):axes_color_(axes_color), scale_color_(scale_color), font_(font), 
+font_color_(font_color), x_label_(x_label), y_label_(y_label), x_range_(), y_range_(){}
 
 /**
  * \brief Drawing function derived from the sf::Drawable class
@@ -21,11 +22,7 @@ void PlotAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
     drawAxes(target, states);
-
-    if(!font_.getInfo().family.empty())
-    {
-        drawLegend(target, states);
-    }
+    drawLegend(target, states);
 }
 
 /**
@@ -38,7 +35,10 @@ void PlotAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
     auto x_end = sf::Vector2f(DIMENSION.x,  DIMENSION.y - MARGIN.y);
     sf::Vertex x_axes[] = {sf::Vertex(x_start, axes_color_),sf::Vertex(x_end, axes_color_)};
     target.draw(x_axes, 2, sf::Lines, states);
-    
+
+    //Draw X label
+    drawLabelX(target,states);
+
     //Draw X scale 
     for(int i = 1; i < 10; i++)
     {
@@ -53,6 +53,9 @@ void PlotAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
     auto y_end = sf::Vector2f(MARGIN.x,  DIMENSION.y - MARGIN.y);
     sf::Vertex y_axes[] = {sf::Vertex(y_start, axes_color_),sf::Vertex(y_end, axes_color_)};
     target.draw(y_axes, 2, sf::Lines, states);
+
+    //Draw Y label
+    drawLabelY(target,states);
 
     // Draw Y scale
     for(int i = 1; i < 10; i++) 
@@ -111,6 +114,39 @@ void PlotAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) con
         legend.setPosition(MARGIN.x - 10.0, DIMENSION.y - MARGIN.y - i * (DIMENSION.y - MARGIN.y ) / 9.0);
         target.draw(legend, states);
     }
+}
+
+/**
+ * \brief Draws label of X axis
+ */
+void PlotAxes::drawLabelX(sf::RenderTarget& target, sf::RenderStates states) const
+{   
+    sf::Text label_x;
+    auto size_x = DIMENSION.x - MARGIN.x;
+    label_x.setString(x_label_);
+    label_x.setFont(font_);
+    label_x.setFillColor(font_color_);
+    label_x.setCharacterSize(16);
+    label_x.setOrigin(label_x.getGlobalBounds().width / 2.0, label_x.getGlobalBounds().height / 2.0);
+    label_x.setPosition(size_x / 2 - x_label_.size() * 5, DIMENSION.y - MARGIN.y + 30.0);
+    target.draw(label_x, states);
+}
+
+/**
+ * \brief Draws label of Y axis
+ */
+void PlotAxes::drawLabelY(sf::RenderTarget& target, sf::RenderStates states) const
+{   
+    sf::Text label_y;
+    auto size_y = DIMENSION.y - MARGIN.y;
+    label_y.setString(y_label_);
+    label_y.setFont(font_);
+    label_y.setFillColor(font_color_);
+    label_y.setCharacterSize(16);
+    label_y.setOrigin(label_y.getGlobalBounds().width / 2.0, label_y.getGlobalBounds().height / 2.0);
+    label_y.setPosition(MARGIN.x - 45.0, size_y / 2 - y_label_.size() * 5);
+    label_y.setRotation(-90);
+    target.draw(label_y, states);
 }
 
 /**

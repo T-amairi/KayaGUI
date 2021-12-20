@@ -5,8 +5,8 @@
 /**
  * \brief Constructor for Plot class
  */
-Plot::Plot(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color)
-:data_set_(), axes_(axes_color,scale_color,font,font_color){}
+Plot::Plot(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color,
+string x_label, string y_label):data_set_(), axes_(axes_color,scale_color,font,font_color,x_label,y_label){}
 
 /**
  * \brief Drawing function derived from the sf::Drawable class

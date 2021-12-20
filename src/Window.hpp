@@ -17,7 +17,8 @@ class WindowPlot : public Window
     public:
         //Constructor for WindowPlot class
         WindowPlot(sf::VideoMode mode, const string &title, const sf::ContextSettings &settings, 
-        sf::Color axes_color, sf::Color scale_color, sf::Font font, sf::Color font_color);
+        sf::Color axes_color, sf::Color scale_color, sf::Font font, sf::Color font_color,
+        string x_label, string y_label);
 
         //Draw function
         void Draw();

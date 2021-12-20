@@ -13,7 +13,7 @@ int main()
 
     auto vid = sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height);
     
-    WindowPlot window(vid,"Test",settings,axes_color,scale_color,font,font_color);
+    WindowPlot window(vid,"Test",settings,axes_color,scale_color,font,font_color,"Year","Population");
     window.run();
 
     return 0;

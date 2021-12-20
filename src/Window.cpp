@@ -10,8 +10,8 @@ Window::Window(sf::VideoMode mode, const string &title, const sf::ContextSetting
  * \brief Constructor for WindowPlot class
  */
 WindowPlot::WindowPlot(sf::VideoMode mode, const string &title, const sf::ContextSettings &settings, 
-sf::Color axes_color, sf::Color scale_color, sf::Font font, sf::Color font_color):
-Window(mode,title,settings),plot_(axes_color,scale_color,font,font_color){}
+sf::Color axes_color, sf::Color scale_color, sf::Font font, sf::Color font_color, string x_label, string y_label):
+Window(mode,title,settings),plot_(axes_color,scale_color,font,font_color,x_label,y_label){}
 
 /**
  * \brief draw the plot using the draw() method of the sf::RenderWindow class

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <utility>
+#include <string>
 
 using namespace std;
 
@@ -12,12 +13,15 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
         static const sf::Vector2f MARGIN;
 
         //Constructor for PlotAxes class
-        PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color);
+        PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color,
+        string x_label, string y_label);
 
         //Drawing functions
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         void drawAxes(sf::RenderTarget& target, sf::RenderStates states) const;
         void drawLegend(sf::RenderTarget& target, sf::RenderStates states) const;
+        void drawLabelX(sf::RenderTarget& target, sf::RenderStates states) const;
+        void drawLabelY(sf::RenderTarget& target, sf::RenderStates states) const;
 
         //setter functions
         void setRangeX(const pair<double, double>& x_range);
@@ -34,6 +38,10 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
         sf::Color scale_color_;
         sf::Font font_;
         sf::Color font_color_;
+
+        //axes label
+        string x_label_;
+        string y_label_;
 
         //min/max for each axis
         pair<double, double> x_range_;
