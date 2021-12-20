@@ -15,7 +15,7 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
         PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color);
 
         //Drawing functions
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         void drawAxes(sf::RenderTarget& target, sf::RenderStates states) const;
         void drawLegend(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -26,7 +26,6 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
         //getter functions 
         pair<double, double> getRangeX() const;
         pair<double, double> getRangeY() const;
-        
         
     private:
         //axes par
