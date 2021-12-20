@@ -1,0 +1,4 @@
+Population : https://population.un.org/wpp/Download/Standard/Population/
+CO2 Emission : https://ourworldindata.org/co2-emissions#global-co2-emissions-from-fossil-fuels-and-land-use-change
+Energy : https://ourworldindata.org/grapher/global-energy-substitution?country=~OWID_WRL
+GDB : https://www.macrotrends.net/countries/WLD/world/gdp-gross-domestic-product
