@@ -9,11 +9,15 @@ class WindowMain : public Window
         WindowMain();
 
         //draw function
+        void drawAll();
         void drawButtons();
+        void drawMiddleLine();
+        void drawEquation();
+        void drawTextsLeftPanel();
 
         //getter function 
         void preparePlot();
-        std::pair<PlotData, PlotData> loadData(std::string path);
+        std::pair<PlotData,PlotData> loadData(std::string path);
         sf::Vector2f getMousePos();
 
         //Open the main window 
@@ -28,4 +32,8 @@ class WindowMain : public Window
         CheckPlot checkplot_;
         //button texture to plot 
         sf::Texture button_texture_plot_;
+        //kaya equation image 
+        sf::Texture equation_texture_;
+        //background image 
+        sf::Texture background_texture_;
 };
