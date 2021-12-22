@@ -3,8 +3,6 @@
 #include <utility>
 #include <string>
 
-using namespace std;
-
 class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     public:
@@ -14,7 +12,7 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
 
         //Constructor for PlotAxes class
         PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color,
-        string x_label, string y_label);
+        std::string x_label, std::string y_label);
 
         //Drawing functions
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -24,12 +22,12 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
         void drawLabelY(sf::RenderTarget& target, sf::RenderStates states) const;
 
         //setter functions
-        void setRangeX(const pair<double, double>& x_range);
-        void setRangeY(const pair<double, double>& y_range);
+        void setRangeX(const std::pair<double, double>& x_range);
+        void setRangeY(const std::pair<double, double>& y_range);
  
         //getter functions 
-        pair<double, double> getRangeX() const;
-        pair<double, double> getRangeY() const;
+        std::pair<double, double> getRangeX() const;
+        std::pair<double, double> getRangeY() const;
         
     private:
         //axes par
@@ -40,10 +38,10 @@ class PlotAxes : virtual public sf::Transformable, virtual public sf::Drawable
         sf::Color font_color_;
 
         //axes label
-        string x_label_;
-        string y_label_;
+        std::string x_label_;
+        std::string y_label_;
 
         //min/max for each axis
-        pair<double, double> x_range_;
-        pair<double, double> y_range_;
+        std::pair<double, double> x_range_;
+        std::pair<double, double> y_range_;
 };

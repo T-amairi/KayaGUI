@@ -37,36 +37,36 @@ sf::Color PlotData::getColor() const
  * \brief get the X value range of the data
  * @return min, max pair of the X value range
 */
-pair<double, double> PlotData::getRangeX() const
+std::pair<double, double> PlotData::getRangeX() const
 {
-    auto min_x = numeric_limits<double>::infinity();
-    auto max_x = numeric_limits<double>::lowest();
+    auto min_x = std::numeric_limits<double>::infinity();
+    auto max_x = std::numeric_limits<double>::lowest();
 
     for(const auto& elem : data_)
     {
-        min_x = min(min_x, elem.x);
-        max_x = max(max_x, elem.x);
+        min_x = std::min(min_x, elem.x);
+        max_x = std::max(max_x, elem.x);
     }
 
-    return pair<double, double>(min_x, max_x);
+    return std::pair<double, double>(min_x, max_x);
 }
 
 /**
  * \brief get the Y value range of the data
  * @return min, max pair of the Y value range
 */
-pair<double, double> PlotData::getRangeY() const
+std::pair<double, double> PlotData::getRangeY() const
 {
-    auto min_y = numeric_limits<double>::infinity();
-    auto max_y = numeric_limits<double>::lowest();
+    auto min_y = std::numeric_limits<double>::infinity();
+    auto max_y = std::numeric_limits<double>::lowest();
 
     for(const auto& elem : data_) 
     {
-        min_y = min(min_y, elem.y);
-        max_y = max(max_y, elem.y);
+        min_y = std::min(min_y, elem.y);
+        max_y = std::max(max_y, elem.y);
     }
 
-    return pair<double, double>(min_y, max_y);
+    return std::pair<double, double>(min_y, max_y);
 }
 
 /**

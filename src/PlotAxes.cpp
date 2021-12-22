@@ -12,7 +12,7 @@ const sf::Vector2f PlotAxes::MARGIN{40.0, 20.0};
  * \brief Constructor for PlotAxes class
  */
 PlotAxes::PlotAxes(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color, 
-string x_label, string y_label):axes_color_(axes_color), scale_color_(scale_color), font_(font), 
+std::string x_label, std::string y_label):axes_color_(axes_color), scale_color_(scale_color), font_(font), 
 font_color_(font_color), x_label_(x_label), y_label_(y_label), x_range_(), y_range_(){}
 
 /**
@@ -74,14 +74,14 @@ void PlotAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) con
 {
     //Draw X legend
     const double x_step = (x_range_.second - x_range_.first) / 9;
-    const int x_precision = abs(min(0.0,log10(x_step) - 2.0));
+    const int x_precision = abs(std::min(0.0,log10(x_step) - 2.0));
 
     for(int i = 0; i < 10; i++) 
     {
         double val = x_range_.first + i * x_step;
-        stringstream ss;
+        std::stringstream ss;
         ss.precision(x_precision);
-        ss << fixed;
+        ss << std::fixed;
         ss << val;
         sf::Text legend;
         legend.setString(ss.str());
@@ -95,14 +95,14 @@ void PlotAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) con
 
     //Draw Y legend
     const double y_step = (y_range_.second - y_range_.first) / 9;
-    const int y_precision = abs(min(0.0,log10(y_step) - 2.0));
+    const int y_precision = abs(std::min(0.0,log10(y_step) - 2.0));
 
     for(int i = 0; i < 10; i++)
     {
         double val = y_range_.first + i * y_step;
-        stringstream ss;
+        std::stringstream ss;
         ss.precision(y_precision);
-        ss << fixed;
+        ss << std::fixed;
         ss.width(5);
         ss << val;
         sf::Text legend;
@@ -153,7 +153,7 @@ void PlotAxes::drawLabelY(sf::RenderTarget& target, sf::RenderStates states) con
  * \brief set the X value of the plot range
  * @param x_range the X value range of the plotting area
 */
-void PlotAxes::setRangeX(const pair<double, double>& x_range)
+void PlotAxes::setRangeX(const std::pair<double, double>& x_range)
 {
     x_range_ = x_range;
 }
@@ -162,7 +162,7 @@ void PlotAxes::setRangeX(const pair<double, double>& x_range)
  * \brief set the Y value of the plot range
  * @param y_range the Y value range of the plotting area
 */
-void PlotAxes::setRangeY(const pair<double, double>& y_range)
+void PlotAxes::setRangeY(const std::pair<double, double>& y_range)
 {
     y_range_ = y_range;
 }
@@ -171,7 +171,7 @@ void PlotAxes::setRangeY(const pair<double, double>& y_range)
  * \brief get the X value of the plot range
  * @return the X value range of the plotting area
 */
-pair<double, double> PlotAxes::getRangeX() const
+std::pair<double, double> PlotAxes::getRangeX() const
 {
     return x_range_;
 }
@@ -180,7 +180,7 @@ pair<double, double> PlotAxes::getRangeX() const
  * \brief get the Y value of the plot range
  * @return the Y value range of the plotting area
 */
-pair<double, double> PlotAxes::getRangeY() const
+std::pair<double, double> PlotAxes::getRangeY() const
 {
     return y_range_;
 }

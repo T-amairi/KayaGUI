@@ -3,8 +3,6 @@
 #include <utility>
 #include <SFML/Graphics.hpp>
 
-using namespace std;
-
 class PlotData
 {
     public:
@@ -15,8 +13,8 @@ class PlotData
         size_t getDataSize() const;
         int getType() const;
         sf::Color getColor() const;  
-        pair<double, double> getRangeX() const;
-        pair<double, double> getRangeY() const; 
+        std::pair<double, double> getRangeX() const;
+        std::pair<double, double> getRangeY() const; 
 
         //setter function
         void addData(sf::Vector2<double> data);
@@ -26,7 +24,7 @@ class PlotData
                     
     private:
         //coord of the points (x,y)
-        vector<sf::Vector2<double>> data_;
+        std::vector<sf::Vector2<double>> data_;
         //the color of the plot
         sf::Color color_; 
         //type of data : i.e 0 for points, 1 for a line

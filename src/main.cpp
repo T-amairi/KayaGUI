@@ -1,20 +1,9 @@
-#include "Window.hpp"
+#include "WindowMain.hpp"
 
 int main()
 {
-    sf::ContextSettings settings;
-    settings.antialiasingLevel = 8;
-
-    sf::Font font;
-    font.loadFromFile("fonts/font.ttf");
-    sf::Color font_color = sf::Color::White;
-    sf::Color axes_color = sf::Color::White;
-    sf::Color scale_color = sf::Color(100.f, 100.f, 100.f);
-
-    auto vid = sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height);
+    WindowMain gui;
+    gui.run();
     
-    WindowPlot window(vid,"Test",settings,axes_color,scale_color,font,font_color,"Year","Population");
-    window.run();
-
     return 0;
 }

@@ -6,7 +6,7 @@
  * \brief Constructor for Plot class
  */
 Plot::Plot(sf::Color axes_color,sf::Color scale_color,sf::Font font, sf::Color font_color,
-string x_label, string y_label):data_set_(), axes_(axes_color,scale_color,font,font_color,x_label,y_label){}
+std::string x_label, std::string y_label):data_set_(), axes_(axes_color,scale_color,font,font_color,x_label,y_label){}
 
 /**
  * \brief Drawing function derived from the sf::Drawable class
@@ -96,20 +96,20 @@ void Plot::addData(PlotData data)
 */
 void Plot::autoRange()
 {
-    double x_min = numeric_limits<double>::max();
-    double x_max = numeric_limits<double>::lowest();
-    double y_min = numeric_limits<double>::max();
-    double y_max = numeric_limits<double>::lowest();
+    double x_min = std::numeric_limits<double>::max();
+    double x_max = std::numeric_limits<double>::lowest();
+    double y_min = std::numeric_limits<double>::max();
+    double y_max = std::numeric_limits<double>::lowest();
 
     for(const auto& elem : data_set_) 
     {
         auto x_range = elem.getRangeX();
-        x_min = min(x_range.first, x_min);
-        x_max = max(x_range.second, x_max);
+        x_min = std::min(x_range.first, x_min);
+        x_max = std::max(x_range.second, x_max);
 
         auto y_range = elem.getRangeY();
-        y_min = min(y_range.first, y_min);
-        y_max = max(y_range.second, y_max);
+        y_min = std::min(y_range.first, y_min);
+        y_max = std::max(y_range.second, y_max);
     }
 
     setRangeX(x_min, x_max);
@@ -123,8 +123,8 @@ void Plot::autoRange()
 */
 void Plot::setRangeX(const double& min, const double& max)
 {
-    pair<double, double> x_range;
-    min > max ? x_range = pair<double, double>(max, min) : x_range = pair<double, double>(min, max);
+    std::pair<double, double> x_range;
+    min > max ? x_range = std::pair<double, double>(max, min) : x_range = std::pair<double, double>(min, max);
     axes_.setRangeX(x_range);
 }
 
@@ -135,7 +135,7 @@ void Plot::setRangeX(const double& min, const double& max)
 */
 void Plot::setRangeY(const double& min, const double& max)
 {
-    pair<double, double> y_range;
-    min > max ? y_range = pair<double, double>(max, min) : y_range = pair<double, double>(min, max);
+    std::pair<double, double> y_range;
+    min > max ? y_range = std::pair<double, double>(max, min) : y_range = std::pair<double, double>(min, max);
     axes_.setRangeY(y_range);
 }
