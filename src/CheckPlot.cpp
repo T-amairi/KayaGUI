@@ -1,4 +1,4 @@
-#include "Utility.hpp"
+#include "CheckPlot.hpp"
 
 /**
  * \brief Constructor for CheckPlot class
@@ -83,7 +83,7 @@ void CheckPlot::free()
 }
 
 /**
- * \brief check the mouse cursor is on one of the buttons
+ * \brief checks if the mouse cursor is on one of the buttons
  * @param mouse_coord x,y coord of the mouse
  * @return the index in my_buttons_ corresponding to the button on which the mouse is or -1 if none
 */

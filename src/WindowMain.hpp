@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.hpp"
-#include "Utility.hpp"
+#include "CheckPlot.hpp"
+#include "TextField.hpp"
 
 class WindowMain : public Window
 {
@@ -8,15 +9,26 @@ class WindowMain : public Window
         //Constructor for WindowMain class
         WindowMain();
 
+        //prepare all figures and classes to be drawn
+        void preparePlot();
+        void prepareTextFields();
+        void prepareTextsLeftPanel();
+        void prepareTextsRightPanel();
+        void prepareTextures();
+        void prepareSprites();
+
         //draw function
         void drawAll();
         void drawButtons();
-        void drawMiddleLine();
-        void drawEquation();
-        void drawTextsLeftPanel();
+        void drawImages();
+        void drawTexts();
+        void drawTextFields();
 
+        //text fields
+        void checkInput(sf::Event& event);
+        void outlineColor(bool ifPressed);
+ 
         //getter function 
-        void preparePlot();
         std::pair<PlotData,PlotData> loadData(std::string path);
         sf::Vector2f getMousePos();
 
@@ -30,10 +42,12 @@ class WindowMain : public Window
         sf::ContextSettings settings_;
         //for handling all the plot window
         CheckPlot checkplot_;
-        //button texture to plot 
-        sf::Texture button_texture_plot_;
-        //kaya equation image 
-        sf::Texture equation_texture_;
-        //background image 
-        sf::Texture background_texture_;
+        //vector for all the texture to be used
+        std::vector<sf::Texture> textures_;
+        //vector for all the sprite to be drawn
+        std::vector<sf::Sprite> sprites_;
+        //vector for all the text to be drawn
+        std::vector<sf::Text> texts_;
+        //vector for all the text boxes to be drawn
+        std::vector<TextField*> fields_;
 };
