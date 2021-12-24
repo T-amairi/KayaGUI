@@ -1,4 +1,4 @@
-Entity,Code,Year,Wind (TWh; substituted energy),Oil (TWh; substituted energy),Nuclear (TWh; substituted energy),Hydropower (TWh; substituted energy),Traditional bimass (TWh; substituted energy),Other renewables (TWh; substituted energy),Biofuels (TWh; substituted energy),Solar (TWh; substituted energy),Coal (TWh; substituted energy),Gas (TWh; substituted energy)
+Entity,Code,Year,Wind,Oil,Nuclear,Hydropower,Traditional bimass,Other renewables,Biofuels,Solar,Coal,Gas
 World,OWID_WRL,1965,0,18109,71,2564,9162,50,0,0,16140,6303
 World,OWID_WRL,1966,0,19496,96,2733,9218,55,0,0,16324,6869
 World,OWID_WRL,1967,0,20891,114,2794,9274,56,0,0,16061,7375
