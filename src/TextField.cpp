@@ -23,7 +23,7 @@ rect_(sf::Vector2f(5 * maxChar, 20)),has_focus_(false)
  * \brief get text_ attribute
  * @return the text in the input field
  */
-sf::Text TextField::getText()
+sf::Text TextField::getText() const
 {
     return text_;
 }
@@ -32,7 +32,7 @@ sf::Text TextField::getText()
  * \brief get str_ attribute
  * @return the string in the input field 
  */
-std::string TextField::getStr()
+std::string TextField::getStr() const
 {
     return str_;
 }
@@ -41,7 +41,7 @@ std::string TextField::getStr()
  * \brief get rect_ attribute
  * @return the rectangle shape
  */
-sf::RectangleShape TextField::getRect()
+sf::RectangleShape TextField::getRect() const
 {
     return rect_;
 }

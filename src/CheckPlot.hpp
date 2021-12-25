@@ -17,7 +17,7 @@ class CheckPlot
         void setAllColor(sf::Color color);
 
         //getter function
-        std::vector<std::shared_ptr<sf::Sprite>> getButtons();
+        std::vector<std::shared_ptr<sf::Sprite>> getButtons() const;
         
         //check if the mouse is on a button
         int operator[](sf::Vector2f mouse_coord) const;

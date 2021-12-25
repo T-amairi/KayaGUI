@@ -20,7 +20,7 @@ sprites_(),texts_(),fields_()
 /**
  * \brief draws all the buttons in the CheckPlot class in the main window
 */
-void WindowMain::drawButtons()
+void WindowMain::drawButtons() 
 {
     auto buttons = checkplot_.getButtons();
 
@@ -33,7 +33,7 @@ void WindowMain::drawButtons()
 /**
  * \brief draws all the images in the main window
 */
-void WindowMain::drawImages()
+void WindowMain::drawImages() 
 {
     for(const auto& sprite : sprites_)
     {
@@ -44,7 +44,7 @@ void WindowMain::drawImages()
 /**
  * \brief draws all the text in the main window
 */
-void WindowMain::drawTexts()
+void WindowMain::drawTexts() 
 {
     for(const auto& text : texts_)
     {
@@ -131,8 +131,9 @@ void WindowMain::prepareTextsLeftPanel()
     text.setPosition(0.0f,110.0f);
     texts_.push_back(text);
 
-    std::vector<std::string> var = {"- F is the global CO2 emissions from human sources",
-    "- P is the global population", "- G is the world Gross domestic product",
+    std::vector<std::string> var = {"- P is the global population",
+    "- G is the world Gross domestic product",
+    "- F is the global CO2 emissions from human sources",
     "- E is the global energy consumption"};
 
     double offset = 155.0f;
@@ -190,8 +191,8 @@ void WindowMain::prepareTextsRightPanel()
  */
 void WindowMain::preparePlot()
 {
-    std::vector<std::string> y_labels = {"CO2 emissions","Population","GDP","Energy consumption"};
-    std::vector<std::string> titles = {"CO2 emissions","Population","Gross domestic product","Energy consumption"};
+    std::vector<std::string> y_labels = {"World population in billions","World GDP in trillions of $","World CO2 emission in billion Gt","World energy consumption in thousands of TWh"};
+    std::vector<std::string> titles = {"Population","Gross domestic product","CO2 emissions","Energy consumption"};
     double offset = 207.5f; 
 
     for(size_t i = 0; i < y_labels.size(); i++)
@@ -200,7 +201,8 @@ void WindowMain::preparePlot()
         p_b->setPosition(0.0f, offset + 118 * i);
         p_b->scale(0.25f, 0.25f);
         checkplot_.addButton(p_b);
-        checkplot_.addPlot(std::shared_ptr<WindowPlot>(new WindowPlot(titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i])));
+        variable name = (variable) i;
+        checkplot_.addPlot(std::shared_ptr<WindowPlot>(new WindowPlot(name,titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i])));
     }
 }
 
@@ -220,7 +222,7 @@ void WindowMain::prepareTextFields()
 /**
  * \brief returns the position of the mouse
  */
-sf::Vector2f WindowMain::getMousePos()
+sf::Vector2f WindowMain::getMousePos() const
 {
     sf::Vector2i mousePos = sf::Mouse::getPosition(*this);
     sf::Vector2f mousePosF(static_cast<float>(mousePos.x),static_cast<float>(mousePos.y));

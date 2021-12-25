@@ -7,9 +7,9 @@ class TextField
         TextField(unsigned int maxChar, double x, double y);
 
         //getter function
-        sf::Text getText();
-        sf::RectangleShape getRect();
-        std::string getStr();
+        sf::Text getText() const;
+        sf::RectangleShape getRect() const;
+        std::string getStr() const;
   
         //setter function
         void setOutlineColor(bool focus);

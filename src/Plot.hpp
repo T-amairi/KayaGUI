@@ -24,8 +24,8 @@ class Plot : virtual public sf::Drawable, virtual public sf::Transformable
         void setRangeY(const double& min, const double& max);
 
         //getter functions
-        std::pair<double, double> getRangeX() const;
-        std::pair<double, double> getRangeY() const;
+        std::vector<PlotData> getDataSet() const;
+
 
     private:
         //the data to plot

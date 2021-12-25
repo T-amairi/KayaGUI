@@ -46,7 +46,7 @@ void Plot::drawPoint(const PlotData& elem, sf::RenderTarget& target, sf::RenderS
         const auto x = (point.x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
         const auto y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (point.y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
-        double POINT_RADIUS = 5.f;
+        double POINT_RADIUS = 2.f;
         sf::CircleShape circle(POINT_RADIUS);
         circle.setFillColor(elem.getColor());
         circle.setPosition(x - POINT_RADIUS, y - POINT_RADIUS);
@@ -138,4 +138,12 @@ void Plot::setRangeY(const double& min, const double& max)
     std::pair<double, double> y_range;
     min > max ? y_range = std::pair<double, double>(max, min) : y_range = std::pair<double, double>(min, max);
     axes_.setRangeY(y_range);
+}
+
+/**
+ * \brief return the data_set_ attribute
+*/
+std::vector<PlotData> Plot::getDataSet() const
+{
+    return data_set_;
 }

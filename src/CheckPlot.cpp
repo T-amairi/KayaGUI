@@ -66,7 +66,7 @@ void CheckPlot::setAllColor(sf::Color color)
 /**
  * \brief return my_buttons_ vector
 */
-std::vector<std::shared_ptr<sf::Sprite>> CheckPlot::getButtons()
+std::vector<std::shared_ptr<sf::Sprite>> CheckPlot::getButtons() const
 {
     return my_buttons_;
 }

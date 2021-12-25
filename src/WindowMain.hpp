@@ -29,8 +29,7 @@ class WindowMain : public Window
         void outlineColor(bool ifPressed);
  
         //getter function 
-        std::pair<PlotData,PlotData> loadData(std::string path);
-        sf::Vector2f getMousePos();
+        sf::Vector2f getMousePos() const;
 
         //Open the main window 
         void run();

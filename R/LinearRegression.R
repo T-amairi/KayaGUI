@@ -42,41 +42,41 @@ par(mfrow=c(1,1))
 plot(dfPop2)
 abline(resPop,col = "red",lwd = 2)
 
-#GDB
-dfGDB = read.csv2("gdb.csv")
-names(dfGDB)[names(dfGDB) == "GDP.in.billion.of.dollars"] = "GDB"
-dfGDB$GDB = gsub('\\.','',dfGDB$GDB)
-dfGDB$GDB = gsub(',','',dfGDB$GDB)
-dfGDB$GDB = as.numeric(dfGDB$GDB) * 10000000
-dfGDB$GDB = round(dfGDB$GDB / 10**13,digits = 2)
-dfGDB = dfGDB [seq(dim(dfGDB)[1],1),]
-head(dfGDB)
+#GDP
+dfGDP = read.csv2("gdp.csv")
+names(dfGDP)[names(dfGDP) == "GDP.in.billion.of.dollars"] = "GDP"
+dfGDP$GDP = gsub('\\.','',dfGDP$GDP)
+dfGDP$GDP = gsub(',','',dfGDP$GDP)
+dfGDP$GDP = as.numeric(dfGDP$GDP) * 10000000
+dfGDP$GDP = round(dfGDP$GDP / 10**13,digits = 2)
+dfGDP = dfGDP [seq(dim(dfGDP)[1],1),]
+head(dfGDP)
 
-plot(dfGDB)
-boxplot(dfGDB$GDB)
+plot(dfGDP)
+boxplot(dfGDP$GDP)
 
-resGDB = lm(GDB ~ Year, dfGDB)
+resGDP = lm(GDP ~ Year, dfGDP)
 par(mfrow=c(2,2))
-plot(resGDB)
-abs(rstudent(resGDB))[abs(rstudent(resGDB))>2]
-shapiro.test(resGDB$residuals)
+plot(resGDP)
+abs(rstudent(resGDP))[abs(rstudent(resGDP))>2]
+shapiro.test(resGDP$residuals)
 
-bc = boxcox(dfGDB$GDB~dfGDB$Year)
+bc = boxcox(dfGDP$GDP~dfGDP$Year)
 lambda = bc$x[which.max(bc$y)]
 print(lambda)
 
-resGDB = lm(log(GDB) ~ Year, dfGDB)
-plot(resGDB)
-abs(rstudent(resGDB))[abs(rstudent(resGDB))>2]
-shapiro.test(resGDB$residuals)
+resGDP = lm(log(GDP) ~ Year, dfGDP)
+plot(resGDP)
+abs(rstudent(resGDP))[abs(rstudent(resGDP))>2]
+shapiro.test(resGDP$residuals)
 
-bptest(resGDB)
-ncvTest(resGDB)
-summary(resGDB)
+bptest(resGDP)
+ncvTest(resGDP)
+summary(resGDP)
 
 par(mfrow=c(1,1))
-plot(dfGDB$Year,log(dfGDB$GDB))
-abline(resGDB,col = "red",lwd = 2)
+plot(dfGDP$Year,log(dfGDP$GDP))
+abline(resGDP,col = "red",lwd = 2)
 
 #CO2
 dfCO2 = read.csv2("co2.csv",sep = ',')
@@ -170,16 +170,16 @@ abline(resEnergy,col = "red",lwd = 2)
 #EXPORT
 names(dfPop2)[names(dfPop2) == "Population"] = "World population in billions"
 write.csv(dfPop2,"population_fitted.csv", row.names = TRUE)
-write(paste(c("b =","a ="),resPop$coefficients),file="population_fitted.csv",append=TRUE)
+write(paste(c("b,","a,"),resPop$coefficients),file="population_fitted.csv",append=TRUE)
 
-names(dfGDB)[names(dfGDB) == "GDB"] = "World GDB in trillions of $"
-write.csv(dfGDB,"gdb_fitted.csv", row.names = TRUE)
-write(paste(c("b =","a ="),resGDB$coefficients),file="gdb_fitted.csv",append=TRUE)
+names(dfGDP)[names(dfGDP) == "GDP"] = "World GDP in trillions of $"
+write.csv(dfGDP,"gdp_fitted.csv", row.names = TRUE)
+write(paste(c("b,","a,"),resGDP$coefficients),file="gdp_fitted.csv",append=TRUE)
 
 names(dfCO22)[names(dfCO22) == "GtCO2"] = "World CO2 emission in billion Gt"
 write.csv(dfCO22,"co2_fitted.csv", row.names = TRUE)
-write(paste(c("b =","a ="),resCO2$coefficients),file="co2_fitted.csv",append=TRUE)
+write(paste(c("b,","a,"),resCO2$coefficients),file="co2_fitted.csv",append=TRUE)
 
 names(dfEnergy2)[names(dfEnergy2) == "TWhEnergy"] = "World energy consumption in thousands of TWh"
 write.csv(dfEnergy2,"energy_fitted.csv", row.names = TRUE)
-write(paste(c("b =","a ="),resEnergy$coefficients),file="energy_fitted.csv",append=TRUE)
+write(paste(c("b,","a,"),resEnergy$coefficients),file="energy_fitted.csv",append=TRUE)

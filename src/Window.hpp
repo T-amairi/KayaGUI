@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Function.hpp"
 
 class Window : public sf::RenderWindow
 {
