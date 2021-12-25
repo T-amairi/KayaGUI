@@ -9,9 +9,9 @@ CheckPlot::CheckPlot():my_buttons_(),my_plots_(){}
  * \brief add plot window to my_plots_ vector
  * @param plot the plot window to be added
 */
-void CheckPlot::addPlot(WindowPlot* plot)
+void CheckPlot::addPlot(std::shared_ptr<WindowPlot> pTrplot)
 {
-    my_plots_.push_back(plot);
+    my_plots_.push_back(pTrplot);
 }
 
 /**
@@ -36,9 +36,9 @@ void CheckPlot::stopPlot(int id)
  * \brief add button to my_buttons_ vector
  * @param button the button to be added
 */
-void CheckPlot::addButton(sf::Sprite* button)
+void CheckPlot::addButton(std::shared_ptr<sf::Sprite> pTrbutton)
 {
-    my_buttons_.push_back(button);
+    my_buttons_.push_back(pTrbutton);
 }
 
 /**
@@ -66,20 +66,9 @@ void CheckPlot::setAllColor(sf::Color color)
 /**
  * \brief return my_buttons_ vector
 */
-std::vector<sf::Sprite*> CheckPlot::getButtons()
+std::vector<std::shared_ptr<sf::Sprite>> CheckPlot::getButtons()
 {
     return my_buttons_;
-}
-
-/**
- * \brief deletes all the used memory  
-*/
-void CheckPlot::free()
-{
-    for(size_t i = 0; i < my_plots_.size(); i++)
-    {
-        delete my_plots_[i];
-    }
 }
 
 /**

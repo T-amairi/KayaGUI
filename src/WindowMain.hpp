@@ -49,5 +49,5 @@ class WindowMain : public Window
         //vector for all the text to be drawn
         std::vector<sf::Text> texts_;
         //vector for all the text boxes to be drawn
-        std::vector<TextField*> fields_;
+        std::vector<std::shared_ptr<TextField>> fields_;
 };

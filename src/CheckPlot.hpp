@@ -1,5 +1,6 @@
 #pragma once
 #include "WindowPlot.hpp"
+#include <memory>
 
 class CheckPlot
 {
@@ -8,25 +9,22 @@ class CheckPlot
         CheckPlot();
 
         //setter function
-        void addPlot(WindowPlot* plot);
+        void addPlot(std::shared_ptr<WindowPlot> pTrplot);
         void startPlot(int id);
         void stopPlot(int id);
-        void addButton(sf::Sprite* button);
+        void addButton(std::shared_ptr<sf::Sprite> pTrbutton);
         void setColor(int id, sf::Color color);
         void setAllColor(sf::Color color);
 
         //getter function
-        std::vector<sf::Sprite*> getButtons();
-
-        //free
-        void free();
+        std::vector<std::shared_ptr<sf::Sprite>> getButtons();
         
         //check if the mouse is on a button
         int operator[](sf::Vector2f mouse_coord) const;
 
     private:
         //list of all buttons
-        std::vector<sf::Sprite*> my_buttons_;
+        std::vector<std::shared_ptr<sf::Sprite>> my_buttons_;
         //list of all plots
-        std::vector<WindowPlot*> my_plots_;
+        std::vector<std::shared_ptr<WindowPlot>> my_plots_;
 };

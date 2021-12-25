@@ -196,11 +196,11 @@ void WindowMain::preparePlot()
 
     for(size_t i = 0; i < y_labels.size(); i++)
     {
-        sf::Sprite* p_b = new sf::Sprite(textures_[0]);
+        std::shared_ptr<sf::Sprite> p_b(new sf::Sprite(textures_[0]));
         p_b->setPosition(0.0f, offset + 118 * i);
         p_b->scale(0.25f, 0.25f);
         checkplot_.addButton(p_b);
-        checkplot_.addPlot(new WindowPlot(titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i]));
+        checkplot_.addPlot(std::shared_ptr<WindowPlot>(new WindowPlot(titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i])));
     }
 }
 
@@ -213,7 +213,7 @@ void WindowMain::prepareTextFields()
 
     for(size_t i = 0; i < 4; i++)
     {
-        fields_.push_back(new TextField(10,getSize().x / 2.0 + 60,offset*i + 210));   
+        fields_.push_back(std::shared_ptr<TextField>(new TextField(10,getSize().x / 2.0 + 60,offset*i + 210)));   
     }
 }
 
@@ -274,7 +274,6 @@ void WindowMain::run()
             {
                 case sf::Event::Closed:
                     close();
-                    checkplot_.free();
                     break;
                 case sf::Event::MouseMoved:
                 {
