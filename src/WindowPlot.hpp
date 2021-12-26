@@ -14,11 +14,13 @@ class WindowPlot : public Window
 
         //getter function
         std::string getPath() const;
+        std::pair<double,double> getCoeff() const;
         
         //setter function
         void addData(PlotData data);
         void setPosition(double x, double y);
         void setLinearReg();
+        void resetData();
 
         //load the data
         void loadData();

@@ -1,5 +1,4 @@
 #include "WindowPlot.hpp"
-#include "iostream"
 
 /**
  * \brief Constructor for WindowPlot class
@@ -8,8 +7,11 @@ WindowPlot::WindowPlot(variable name, std::string title, sf::Color axes_color, s
 std::string x_label, std::string y_label):Window(),plot_(axes_color,scale_color,font,font_color,x_label,y_label),
 title_(title),name_(name),a_(),b_()
 {
-    loadData();
-    setLinearReg();
+    if(name_ != variable::Compute)
+    {
+        loadData();
+        setLinearReg();
+    }
 }
 
 /**
@@ -83,6 +85,23 @@ std::string WindowPlot::getPath() const
     }
 
     return path + "_fitted.csv";
+}
+
+/**
+ * \brief reset the plot data
+*/
+void WindowPlot::resetData()
+{
+    plot_.resetData();
+}
+
+/**
+ * \brief create a pair of the linear coeff
+ * @return a std::pair object with first (a_ attribute) and second (b_ attribute)
+*/
+std::pair<double,double> WindowPlot::getCoeff() const
+{
+    return std::make_pair(a_,b_);
 }
 
 /**

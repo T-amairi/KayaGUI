@@ -3,7 +3,7 @@
 /**
  * \brief Constructor for WindowMain class
  */
-WindowMain::WindowMain():Window(),font_(),settings_(),checkplot_(),textures_(),
+WindowMain::WindowMain():Window(),font_(),settings_(),checkplot_(),checkcompute_(),textures_(),
 sprites_(),texts_(),fields_()
 {
     settings_.antialiasingLevel = 8;
@@ -11,9 +11,11 @@ sprites_(),texts_(),fields_()
     font_.loadFromFile("fonts/font.ttf");
     prepareTextsRightPanel();
     prepareTextsLeftPanel();
+    prepareLegend();
     prepareTextures();
     prepareSprites();
     preparePlot();
+    prepareCompute();
     prepareTextFields();
 };
 
@@ -28,6 +30,8 @@ void WindowMain::drawButtons()
     {
         draw(*button);
     }
+
+    draw(*checkcompute_.getButton());
 }
 
 /**
@@ -91,15 +95,10 @@ void WindowMain::prepareTextures()
 }
 
 /**
- * \brief creates all sprites into the sprites_ vector
+ * \brief creates all sprites into the sprites_ vector (except for buttons)
 */
 void WindowMain::prepareSprites()
 {
-    /*sf::Sprite compute(textures_[1]);
-    compute.setPosition(0.0f, 40.0f);
-    compute.scale(1.0f, 1.0f);
-    sprites_.push_back(compute);*/
-
     sf::Sprite space(textures_[4]);
     sprites_.push_back(space);
 
@@ -111,6 +110,34 @@ void WindowMain::prepareSprites()
     equation.scale(1.0f, 1.0f);
     sprites_.push_back(equation);
 }
+
+/**
+ * \brief creates the legend for the compute plot
+*/
+void WindowMain::prepareLegend()
+{
+     sf::Text text;
+    text.setFont(font_); 
+    text.setCharacterSize(30); 
+    text.setFillColor(sf::Color::White);
+    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+    text.setString("Legend:");
+    text.setPosition(getSize().x / 2.0 + 225,500.f);
+    texts_.push_back(text);
+
+    text.setStyle(sf::Text::Regular);
+    text.setFillColor(sf::Color::Red);
+    text.setString("- Right side of the identity");
+    text.setPosition(getSize().x / 2.0 + 225,540.f);
+    texts_.push_back(text);
+
+    text.setFillColor(sf::Color::White);
+    text.setString("- Left side of the identity");
+    text.setPosition(getSize().x / 2.0 + 225,580.f);
+    texts_.push_back(text);
+}
+
 
 /**
  * \brief creates all the texts to be drawn at the left of the window into the texts_ vector
@@ -144,7 +171,6 @@ void WindowMain::prepareTextsLeftPanel()
         text.setString(var[i]);
         text.setPosition(0.0f,offset + 120*i);
         texts_.push_back(text);
-        
     }
 }
 
@@ -161,7 +187,7 @@ void WindowMain::prepareTextsRightPanel()
     std::vector<std::string> fact = {"Factors:",
     "- G/P is the production per person", "- E/G is the energy intensity of the economy",
     "- F/E is the carbon footprint of energy","Kaya Identity Scenario Prognosticator:",
-    "P:","G/P:","E/G:","F/E:","%/year"};
+    "P:","G/P:","E/G:","F/E:","Year of end:","%/year"};
 
     double offset = 40.0f;
 
@@ -172,7 +198,7 @@ void WindowMain::prepareTextsRightPanel()
             text.setStyle(sf::Text::Bold | sf::Text::Underlined);
         }
 
-        if(i > 4)
+        if(i > 4 && i != 9)
         {
             text.setString(fact[fact.size() - 1]);
             text.setPosition(getSize().x / 2.0 + 120, offset*i);
@@ -184,6 +210,14 @@ void WindowMain::prepareTextsRightPanel()
         texts_.push_back(text);
         text.setStyle(sf::Text::Regular);
     }
+    
+    text.setString("(NUMERICAL VALUE ONLY!)");
+    text.setPosition(getSize().x / 2.0 + 225, (offset/1.4) * (fact.size() - 2));
+    texts_.push_back(text);
+
+    text.setString("(GREATER OR EQUAL T0 2023!)");
+    text.setPosition(getSize().x / 2.0 + 225, offset * (fact.size() - 2));
+    texts_.push_back(text);
 }
 
 /**
@@ -193,17 +227,31 @@ void WindowMain::preparePlot()
 {
     std::vector<std::string> y_labels = {"World population in billions","World GDP in trillions of $","World CO2 emission in billion Gt","World energy consumption in thousands of TWh"};
     std::vector<std::string> titles = {"Population","Gross domestic product","CO2 emissions","Energy consumption"};
-    double offset = 207.5f; 
+    double offset = 200.f; 
 
     for(size_t i = 0; i < y_labels.size(); i++)
     {
         std::shared_ptr<sf::Sprite> p_b(new sf::Sprite(textures_[0]));
         p_b->setPosition(0.0f, offset + 118 * i);
-        p_b->scale(0.25f, 0.25f);
+        p_b->scale(0.18f, 0.18f);
         checkplot_.addButton(p_b);
         variable name = (variable) i;
         checkplot_.addPlot(std::shared_ptr<WindowPlot>(new WindowPlot(name,titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i])));
     }
+}
+
+/**
+ * \brief fills CheckCompute
+ */
+void WindowMain::prepareCompute()
+{
+    std::shared_ptr<sf::Sprite> p_c(new sf::Sprite(textures_[1]));
+    p_c->setPosition(getSize().x / 2.0, 400.0f);
+    p_c->scale(0.22f, 0.22f);
+    checkcompute_.setButton(p_c);
+    checkcompute_.setCoeff(checkplot_.getCoeff());
+    variable name = (variable) 4;
+    checkcompute_.setPlot(std::shared_ptr<WindowPlot>(new WindowPlot(name,"Kaya Identity Scenario Prognosticator",sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year","World CO2 emission in billion Gt")));
 }
 
 /**
@@ -215,8 +263,10 @@ void WindowMain::prepareTextFields()
 
     for(size_t i = 0; i < 4; i++)
     {
-        fields_.push_back(std::shared_ptr<TextField>(new TextField(10,getSize().x / 2.0 + 60,offset*i + 210)));   
+        fields_.push_back(std::shared_ptr<TextField>(new TextField(4,getSize().x / 2.0 + 60,offset*i + 210)));   
     }
+
+    fields_.push_back(std::shared_ptr<TextField>(new TextField(4,getSize().x / 2.0 + 120,offset*4 + 210)));
 }
 
 /**
@@ -262,6 +312,32 @@ void WindowMain::outlineColor(bool ifPressed)
 }
 
 /**
+ * \brief get the input of all text fields
+ * @return a vector containing all the input 
+*/
+std::vector<double> WindowMain::getInput() const
+{
+    std::vector<double> vec;
+
+    for(const auto& field : fields_)
+    {
+        auto val = field->getStr();
+
+        if(val.empty())
+        {
+            vec.push_back(0.0);
+        }
+
+        else
+        {
+            vec.push_back(stod(val));
+        }
+    }
+
+    return vec;
+}
+
+/**
  * \brief opens the main GUI window
 */
 void WindowMain::run()
@@ -280,6 +356,7 @@ void WindowMain::run()
                 case sf::Event::MouseMoved:
                 {
                     int res = checkplot_[getMousePos()];
+                    auto res2 = checkcompute_[getMousePos()];
 
                     if(res != -1)
                     {
@@ -288,17 +365,34 @@ void WindowMain::run()
 
                     else
                     {
-                        checkplot_.setAllColor(sf::Color(255,255,255));
+                        checkplot_.setAllColor(sf::Color::White);
+                    }
+
+                    if(res2)
+                    {
+                       checkcompute_.setColor(sf::Color::Red);
+                    }
+
+                    else
+                    {
+                        checkcompute_.setColor(sf::Color::White);
                     }
                 }
                     break;
                 case sf::Event::MouseButtonPressed:
                 {
                     int res = checkplot_[getMousePos()];
+                    auto res2 = checkcompute_[getMousePos()];
 
                     if(res != -1)
                     {
                         checkplot_.startPlot(res);
+                    }
+
+                    else if(res2)
+                    {
+                        auto input = getInput();
+                        checkcompute_.startPlot(input[0],input[1],input[2],input[3],input[4]);
                     }
 
                     outlineColor(true);

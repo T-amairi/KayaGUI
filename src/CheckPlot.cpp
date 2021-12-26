@@ -24,15 +24,6 @@ void CheckPlot::startPlot(int id)
 }
 
 /**
- * \brief stop a plot 
- * @param id the index of the plot to be stopped
-*/
-void CheckPlot::stopPlot(int id)
-{
-    my_plots_[id]->close();
-}
-
-/**
  * \brief add button to my_buttons_ vector
  * @param button the button to be added
 */
@@ -87,4 +78,20 @@ int CheckPlot::operator[](sf::Vector2f mouse_coord) const
     }
 
     return -1;
+}
+
+/**
+ * \brief create a vector containing all coeffs
+ * @return a vector of pair containing all coeffs for each parameters of the kaya equation
+*/
+std::vector<std::pair<double,double>> CheckPlot::getCoeff() const
+{
+    std::vector<std::pair<double,double>> vec;
+    
+    for(const auto& ptr : my_plots_)
+    {
+        vec.push_back(ptr->getCoeff());
+    }
+
+    return vec;
 }

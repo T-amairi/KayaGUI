@@ -5,7 +5,7 @@
 #include <string>
 
 //to get which function to use
-enum variable {Population,GDP,CO2,Energy};
+enum variable {Population,GDP,CO2,Energy,Compute};
 
 /**
  * \brief normal linear regression
@@ -46,4 +46,19 @@ inline std::vector<std::string> split(const std::string& line, char delim)
     }
 
     return tokens;
+}
+
+/**
+ * \brief Compute the percentage of a number
+ */
+inline double computePercentage(double x, double percent)
+{
+    double diff = x * abs(percent) / 100.0;
+
+    if(percent < 0)
+    {
+        return x - diff;
+    }
+
+    return x + diff;
 }

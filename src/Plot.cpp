@@ -141,6 +141,17 @@ void Plot::setRangeY(const double& min, const double& max)
 }
 
 /**
+ * \brief clear the data_set_ vector 
+*/
+void Plot::resetData()
+{
+    if(!data_set_.empty())
+    {
+        data_set_.clear();
+    }
+}
+
+/**
  * \brief return the data_set_ attribute
 */
 std::vector<PlotData> Plot::getDataSet() const

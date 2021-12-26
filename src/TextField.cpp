@@ -4,12 +4,12 @@
  * \brief Constructor for TextField class
  */
 TextField::TextField(unsigned int maxChar, double x, double y):font_(),size_(maxChar),str_(),text_(),
-rect_(sf::Vector2f(5 * maxChar, 20)),has_focus_(false)
+rect_(sf::Vector2f(12.5 * maxChar, 22.5)),has_focus_(false)
 {
     font_.loadFromFile("fonts/font.ttf");
 
     text_.setFont(font_); 
-    text_.setCharacterSize(15); 
+    text_.setCharacterSize(20); 
     text_.setFillColor(sf::Color::Black);
     text_.setPosition(x,y);
     
@@ -71,7 +71,7 @@ void TextField::setOutlineColor(bool focus)
 
     else
     {
-        rect_.setOutlineColor(sf::Color::White); 
+        rect_.setOutlineColor(sf::Color::Black); 
     }
 }
 
@@ -82,6 +82,11 @@ void TextField::setOutlineColor(bool focus)
 void TextField::handleInput(sf::Event event)
 {
     if(!has_focus_ || event.type != sf::Event::TextEntered)
+    {
+        return;
+    }
+
+    else if(event.text.unicode != 8 && event.text.unicode != 46 && event.text.unicode != 45 && (event.text.unicode < 48 || event.text.unicode > 57))
     {
         return;
     }

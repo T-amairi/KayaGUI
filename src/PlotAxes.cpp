@@ -144,7 +144,7 @@ void PlotAxes::drawLabelY(sf::RenderTarget& target, sf::RenderStates states) con
     label_y.setFillColor(font_color_);
     label_y.setCharacterSize(16);
     label_y.setOrigin(label_y.getGlobalBounds().width / 2.0, label_y.getGlobalBounds().height / 2.0);
-    label_y.setPosition(MARGIN.x - 45.0, size_y / 2 - y_label_.size());
+    label_y.setPosition(MARGIN.x - 55.0, size_y / 2 - y_label_.size());
     label_y.setRotation(-90);
     target.draw(label_y, states);
 }

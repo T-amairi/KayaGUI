@@ -2,6 +2,7 @@
 #include "Window.hpp"
 #include "CheckPlot.hpp"
 #include "TextField.hpp"
+#include "CheckCompute.hpp"
 
 class WindowMain : public Window
 {
@@ -11,11 +12,13 @@ class WindowMain : public Window
 
         //prepare all figures and classes to be drawn
         void preparePlot();
+        void prepareCompute();
         void prepareTextFields();
         void prepareTextsLeftPanel();
         void prepareTextsRightPanel();
         void prepareTextures();
         void prepareSprites();
+        void prepareLegend();
 
         //draw function
         void drawAll();
@@ -30,6 +33,7 @@ class WindowMain : public Window
  
         //getter function 
         sf::Vector2f getMousePos() const;
+        std::vector<double> getInput() const;
 
         //Open the main window 
         void run();
@@ -41,6 +45,8 @@ class WindowMain : public Window
         sf::ContextSettings settings_;
         //for handling all the plot window
         CheckPlot checkplot_;
+        //for handling all the plot window
+        CheckCompute checkcompute_;
         //vector for all the texture to be used
         std::vector<sf::Texture> textures_;
         //vector for all the sprite to be drawn

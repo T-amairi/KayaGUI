@@ -11,13 +11,13 @@ class CheckPlot
         //setter function
         void addPlot(std::shared_ptr<WindowPlot> pTrplot);
         void startPlot(int id);
-        void stopPlot(int id);
         void addButton(std::shared_ptr<sf::Sprite> pTrbutton);
         void setColor(int id, sf::Color color);
         void setAllColor(sf::Color color);
 
         //getter function
         std::vector<std::shared_ptr<sf::Sprite>> getButtons() const;
+        std::vector<std::pair<double,double>> getCoeff() const;
         
         //check if the mouse is on a button
         int operator[](sf::Vector2f mouse_coord) const;

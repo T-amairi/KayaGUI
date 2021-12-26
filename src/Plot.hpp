@@ -22,6 +22,7 @@ class Plot : virtual public sf::Drawable, virtual public sf::Transformable
         void addData(PlotData data);
         void setRangeX(const double& min, const double& max);
         void setRangeY(const double& min, const double& max);
+        void resetData();
 
         //getter functions
         std::vector<PlotData> getDataSet() const;
