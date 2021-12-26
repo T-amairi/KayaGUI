@@ -86,7 +86,7 @@ void CheckCompute::computeForecast(double p1, double p2, double p3, double p4, i
     std::iota(years.begin(), years.end(), 2022);
 
     PlotData rightSideEquation(sf::Color::Red,1);
-    PlotData LeftSideEquation(sf::Color::White,1);
+    PlotData LeftSideEquation(sf::Color(255,128,28),1);
 
     for(const auto& x : years)
     {

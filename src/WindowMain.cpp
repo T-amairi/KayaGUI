@@ -132,7 +132,7 @@ void WindowMain::prepareLegend()
     text.setPosition(getSize().x / 2.0 + 225,540.f);
     texts_.push_back(text);
 
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(sf::Color(255,128,28));
     text.setString("- Left side of the identity");
     text.setPosition(getSize().x / 2.0 + 225,580.f);
     texts_.push_back(text);
