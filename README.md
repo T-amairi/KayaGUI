@@ -1,6 +1,7 @@
 # KayaGUI : Une interface graphique pour l'équation de KAYA
 
 Ce projet est une application graphique écrite en C++ de l'équation de [KAYA](https://fr.wikipedia.org/wiki/%C3%89quation_de_Kaya).
+
 ![Screen](images/screen.png)
 
 ## Installation
