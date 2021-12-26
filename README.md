@@ -47,5 +47,5 @@ Dans l'application, les boutons plots permettent donc d'afficher les données et
 
 ## Auteurs
 
-Hamza RAIS
-Tahar AMAIRI
+- Hamza RAIS
+- Tahar AMAIRI
