@@ -128,12 +128,12 @@ void WindowMain::prepareLegend()
 
     text.setStyle(sf::Text::Regular);
     text.setFillColor(sf::Color::Red);
-    text.setString("- Right side of the identity");
+    text.setString("- Normal scenario");
     text.setPosition(getSize().x / 2.0 + 225,540.f);
     texts_.push_back(text);
 
     text.setFillColor(sf::Color(255,128,28));
-    text.setString("- Left side of the identity");
+    text.setString("- User scenario");
     text.setPosition(getSize().x / 2.0 + 225,580.f);
     texts_.push_back(text);
 }
