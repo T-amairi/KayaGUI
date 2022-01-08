@@ -235,8 +235,7 @@ void WindowMain::preparePlot()
         p_b->setPosition(0.0f, offset + 118 * i);
         p_b->scale(0.18f, 0.18f);
         checkplot_.addButton(p_b);
-        variable name = (variable) i;
-        checkplot_.addPlot(std::shared_ptr<WindowPlot>(new WindowPlot(name,titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i])));
+        checkplot_.addPlot(std::shared_ptr<WindowPlot>(new WindowPlot((variable) i,titles[i],sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year",y_labels[i])));
     }
 }
 

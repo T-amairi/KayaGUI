@@ -1,4 +1,5 @@
 #include "WindowPlot.hpp"
+#include <filesystem>
 
 /**
  * \brief Constructor for WindowPlot class
@@ -65,6 +66,12 @@ void WindowPlot::setPosition(double x, double y)
 std::string WindowPlot::getPath() const
 {
     std::string path = "./data/";
+
+    //for tests
+    if(std::filesystem::current_path().string().back() == 's')
+    {
+        path = "." + path;
+    }
 
     switch(name_)
     {

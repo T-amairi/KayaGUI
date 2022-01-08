@@ -16,7 +16,7 @@ sudo apt-get install libsfml-dev
 Pour d'autres distros Linux, voir votre package managers.
 Il existe aussi une version pour Windows et MAC (voir la [documentation](https://www.sfml-dev.org/tutorials/2.5/#getting-started)).
 
-**ATTENTION** : Version 2.5 minimum.  
+**ATTENTION** : Version 2.5 minimum et C++17 sont requis.  
 
 ## Lancement
 

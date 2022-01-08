@@ -9,11 +9,13 @@ EXEC = testcase.out
 
 all: $(EXEC)
 
+#EXEC
 $(EXEC): $(OBJ_TEST)
 	$(CC) $^ $(LIBFLAGS) -o $@
 
 %.o: %.cpp
-	$(CC) -I ../src -o $@ -c $<
+	$(CC) $(CCFLAGS) -I ../src -o $@ -c $<
 
+#CLEAN
 clean:
 	rm -f $(OBJ_TEST) $(EXEC)

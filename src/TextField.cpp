@@ -1,4 +1,5 @@
 #include "TextField.hpp"
+#include <filesystem>
 
 /**
  * \brief Constructor for TextField class
@@ -6,7 +7,16 @@
 TextField::TextField(unsigned int maxChar, double x, double y):font_(),size_(maxChar),str_(),text_(),
 rect_(sf::Vector2f(12.5 * maxChar, 22.5)),has_focus_(false)
 {
-    font_.loadFromFile("fonts/font.ttf");
+    //for tests
+    if(std::filesystem::current_path().string().back() == 's')
+    {
+        font_.loadFromFile("../fonts/font.ttf");
+    }
+
+    else
+    {
+        font_.loadFromFile("fonts/font.ttf");
+    }
 
     text_.setFont(font_); 
     text_.setCharacterSize(20); 

@@ -26,8 +26,7 @@ class Plot : virtual public sf::Drawable, virtual public sf::Transformable
 
         //getter functions
         std::vector<PlotData> getDataSet() const;
-
-
+        
     private:
         //the data to plot
         std::vector<PlotData> data_set_;
