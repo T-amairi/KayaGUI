@@ -36,7 +36,7 @@ class WindowMain : public Window
         std::vector<double> getInput() const;
 
         //Open the main window 
-        void run();
+        void run() override;
 
     private:
         //font

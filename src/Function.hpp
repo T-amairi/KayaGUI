@@ -49,16 +49,9 @@ inline std::vector<std::string> split(const std::string& line, char delim)
 }
 
 /**
- * \brief Compute the percentage of a number
+ * \brief Compute the increase/decrease percentage of x
  */
 inline double computePercentage(double x, double percent)
 {
-    double diff = x * abs(percent) / 100.0;
-
-    if(percent < 0)
-    {
-        return x - diff;
-    }
-
-    return x + diff;
+    return x * (1 + percent/100.0);
 }

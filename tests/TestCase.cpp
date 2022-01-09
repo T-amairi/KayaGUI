@@ -7,7 +7,7 @@ TEST_CASE("1: Tests on Functions")
     REQUIRE(Linear(5,1,10) == 51);
     REQUIRE(Log(0,0,50) == 1);
     REQUIRE(Sqrt(0,0.5,50) == 0.25);
-    REQUIRE(computePercentage(100,10) == 110);
+    REQUIRE(std::round(computePercentage(100,10)) == 110.0);
 
     auto v = split("a,b,c",',');
     REQUIRE(v[0] == "a");

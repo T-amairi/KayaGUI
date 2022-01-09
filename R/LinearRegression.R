@@ -83,10 +83,10 @@ dfCO2 = read.csv2("co2.csv",sep = ',')
 dfCO2$Entity = NULL
 dfCO2$Code = NULL
 names(dfCO2)[names(dfCO2) == "Fossil.fuel...land.use.emissions..GtCO2."] = "GtCO2"
-dfCO2$GtCO2 = as.numeric(dfCO2$GtCO2) + as.numeric(dfCO2$Land.use.emissions..GtCO2.) + as.numeric(dfCO2$Fossil.fuel.and.industry.emissions..GtCO2.)
+dfCO2$GtCO2 = as.numeric(dfCO2$Land.use.emissions..GtCO2.) + as.numeric(dfCO2$Fossil.fuel.and.industry.emissions..GtCO2.)
 dfCO2$Land.use.emissions..GtCO2. = NULL
 dfCO2$Fossil.fuel.and.industry.emissions..GtCO2. = NULL
-dfCO2$GtCO2 = round(dfCO2$GtCO2 / 10**10,digits = 2)
+dfCO2$GtCO2 = round(dfCO2$GtCO2 / 10**9,digits = 2)
 head(dfCO2)
 
 plot(dfCO2)
@@ -168,18 +168,18 @@ plot(dfEnergy2$Year,sqrt(dfEnergy2$TWhEnergy))
 abline(resEnergy,col = "red",lwd = 2)
 
 #EXPORT
-names(dfPop2)[names(dfPop2) == "Population"] = "World population in billions"
+names(dfPop2)[names(dfPop2) == "Population"] = "World population in billion"
 write.csv(dfPop2,"population_fitted.csv", row.names = TRUE)
 write(paste(c("b,","a,"),resPop$coefficients),file="population_fitted.csv",append=TRUE)
 
-names(dfGDP)[names(dfGDP) == "GDP"] = "World GDP in trillions of $"
+names(dfGDP)[names(dfGDP) == "GDP"] = "World GDP in trillion of $"
 write.csv(dfGDP,"gdp_fitted.csv", row.names = TRUE)
 write(paste(c("b,","a,"),resGDP$coefficients),file="gdp_fitted.csv",append=TRUE)
 
-names(dfCO22)[names(dfCO22) == "GtCO2"] = "World CO2 emission in billion Gt"
+names(dfCO22)[names(dfCO22) == "GtCO2"] = "World CO2 emission in billion of Tons"
 write.csv(dfCO22,"co2_fitted.csv", row.names = TRUE)
 write(paste(c("b,","a,"),resCO2$coefficients),file="co2_fitted.csv",append=TRUE)
 
-names(dfEnergy2)[names(dfEnergy2) == "TWhEnergy"] = "World energy consumption in thousands of TWh"
+names(dfEnergy2)[names(dfEnergy2) == "TWhEnergy"] = "World energy consumption in thousand of TWh"
 write.csv(dfEnergy2,"energy_fitted.csv", row.names = TRUE)
 write(paste(c("b,","a,"),resEnergy$coefficients),file="energy_fitted.csv",append=TRUE)

@@ -10,7 +10,7 @@ class WindowPlot : public Window
         sf::Color font_color, std::string x_label, std::string y_label);
 
         //Open the window with a plot
-        void run();
+        void run() override;
 
         //getter function
         std::string getPath() const;

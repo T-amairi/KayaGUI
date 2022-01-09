@@ -128,7 +128,7 @@ void WindowMain::prepareLegend()
 
     text.setStyle(sf::Text::Regular);
     text.setFillColor(sf::Color::Red);
-    text.setString("- Normal scenario");
+    text.setString("- Default scenario");
     text.setPosition(getSize().x / 2.0 + 225,540.f);
     texts_.push_back(text);
 
@@ -215,7 +215,7 @@ void WindowMain::prepareTextsRightPanel()
     text.setPosition(getSize().x / 2.0 + 225, (offset/1.4) * (fact.size() - 2));
     texts_.push_back(text);
 
-    text.setString("(GREATER OR EQUAL T0 2023!)");
+    text.setString("(GREATER OR EQUAL T0 2021!)");
     text.setPosition(getSize().x / 2.0 + 225, offset * (fact.size() - 2));
     texts_.push_back(text);
 }
@@ -225,7 +225,7 @@ void WindowMain::prepareTextsRightPanel()
  */
 void WindowMain::preparePlot()
 {
-    std::vector<std::string> y_labels = {"World population in billions","World GDP in trillions of $","World CO2 emission in billion Gt","World energy consumption in thousands of TWh"};
+    std::vector<std::string> y_labels = {"World population in billion","World GDP in trillion of $","World CO2 emission in billion of Tons","World energy consumption in thousand of TWh"};
     std::vector<std::string> titles = {"Population","Gross domestic product","CO2 emissions","Energy consumption"};
     double offset = 200.f; 
 
@@ -250,7 +250,7 @@ void WindowMain::prepareCompute()
     checkcompute_.setButton(p_c);
     checkcompute_.setCoeff(checkplot_.getCoeff());
     variable name = (variable) 4;
-    checkcompute_.setPlot(std::shared_ptr<WindowPlot>(new WindowPlot(name,"Kaya Identity Scenario Prognosticator",sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year","World CO2 emission in billion Gt")));
+    checkcompute_.setPlot(std::shared_ptr<WindowPlot>(new WindowPlot(name,"Kaya Identity Scenario Prognosticator",sf::Color::White,sf::Color(100.f, 100.f, 100.f),font_,sf::Color::White,"Year","World CO2 emission in billion Tons")));
 }
 
 /**
@@ -262,10 +262,10 @@ void WindowMain::prepareTextFields()
 
     for(size_t i = 0; i < 4; i++)
     {
-        fields_.push_back(std::shared_ptr<TextField>(new TextField(4,getSize().x / 2.0 + 60,offset*i + 210)));   
+        fields_.push_back(std::shared_ptr<TextField>(new TextField(5,getSize().x / 2.0 + 45,offset*i + 210)));   
     }
 
-    fields_.push_back(std::shared_ptr<TextField>(new TextField(4,getSize().x / 2.0 + 120,offset*4 + 210)));
+    fields_.push_back(std::shared_ptr<TextField>(new TextField(5,getSize().x / 2.0 + 120,offset*4 + 210)));
 }
 
 /**

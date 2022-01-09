@@ -81,23 +81,33 @@ void CheckCompute::computeForecast(double p1, double p2, double p3, double p4, i
 {
     my_plot_->resetData();
     int diff;
-    year < 2022 ? diff = 2 : diff = year - 2021;
+    year <= 2020 ? diff = 2 : diff = year - 2019;
     std::vector<int> years(diff);
-    std::iota(years.begin(), years.end(), 2022);
+    std::iota(years.begin(), years.end(), 2020);
 
     PlotData rightSideEquation(sf::Color::Red,1);
     PlotData LeftSideEquation(sf::Color(255,128,28),1);
 
+    double P = Linear(coeff_[0].first,coeff_[0].second,years[0]);
+    double G = Log(coeff_[1].first,coeff_[1].second,years[0]);
+    double F = Sqrt(coeff_[2].first,coeff_[2].second,years[0]);
+    double E = Sqrt(coeff_[3].first,coeff_[3].second,years[0]);
+
+    double G_P = G/P;
+    double E_G = E/G;
+    double F_E = F/E;
+
     for(const auto& x : years)
     {
-        double P = Linear(coeff_[0].first,coeff_[0].second,x);
-        double G = Log(coeff_[1].first,coeff_[1].second,x);
-        double F = Sqrt(coeff_[2].first,coeff_[2].second,x);
-        double E = Sqrt(coeff_[3].first,coeff_[3].second,x);
-        double leftSide = computePercentage(P,p1) * computePercentage(G/P,p2) * computePercentage(E/G,p3) * computePercentage(F/E,p4);
-        
-        rightSideEquation.addData(sf::Vector2<double>(x,F));
+        F = Sqrt(coeff_[2].first,coeff_[2].second,x);
+        P = computePercentage(P,p1);
+        G_P = computePercentage(G_P,p2);
+        E_G = computePercentage(E_G,p3);
+        F_E = computePercentage(F_E,p4);
+
+        double leftSide = P * G_P * E_G * F_E;
         LeftSideEquation.addData(sf::Vector2<double>(x,leftSide));
+        rightSideEquation.addData(sf::Vector2<double>(x,F));
     }
 
     my_plot_->addData(rightSideEquation);
