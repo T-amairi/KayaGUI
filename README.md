@@ -27,7 +27,7 @@ généré. Pour lancer l'application, il faut lancer l'exécutable :
 ./kayaGUI.out
 ```
 
-Par ailleurs, si lors du lancement il y a des erreurs/warnings OpenGL alors il faudra soit installer des drivers graphiques appropriés ou bien réduire/supprimer le niveau antialiasing dans les fichiers WindowPlot.cpp et WindowMain.cpp (CTRL + F avec "antialiasingLevel = 8"). 
+Par ailleurs, si lors du lancement il y a des erreurs/warnings OpenGL alors il faudra soit installer des drivers graphiques appropriés ou bien réduire/supprimer le niveau antialiasing dans les fichiers WindowPlot.cpp et WindowMain.cpp (CTRL + F avec "antialiasingLevel = 8") si votre configuration matérielle est très ancienne. 
 
 ## Fonctionnement
 
