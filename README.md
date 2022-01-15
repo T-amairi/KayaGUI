@@ -27,6 +27,8 @@ généré. Pour lancer l'application, il faut lancer l'exécutable :
 ./kayaGUI.out
 ```
 
+Par ailleurs, si lors du lancement il y a des erreurs/warnings OpenGL alors il faudra soit installer des drivers graphiques appropriés ou bien réduire/supprimer le niveau antialiasing dans les fichiers WindowPlot.cpp et WindowMain.cpp (CTRL + F avec "antialiasingLevel = 8"). 
+
 ## Fonctionnement
 
 L'équation de KAYA permet de relier les émissions de CO2 à certains paramètres économico-sociaux : la population, la richesse et la technologie. En d'autres termes, cela permet de voir comment
