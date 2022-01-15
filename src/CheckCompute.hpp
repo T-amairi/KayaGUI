@@ -9,14 +9,14 @@ class CheckCompute
         CheckCompute();
 
         //setter function
-        void startPlot(double p1, double p2, double p3, double p4, int year);
+        void startPlot(double p1, double p2, double p3, double p4, int start, int end);
         void setButton(std::shared_ptr<sf::Sprite> pTrbutton);
         void setPlot(std::shared_ptr<WindowPlot> pTrplot);
         void setCoeff(std::vector<std::pair<double,double>> coeff);
         void setColor(sf::Color color);
 
         //compute
-        void computeForecast(double p1, double p2, double p3, double p4, int year);
+        void computeForecast(double p1, double p2, double p3, double p4, int start, int end);
         
         //getter function
         std::shared_ptr<sf::Sprite> getButton() const;

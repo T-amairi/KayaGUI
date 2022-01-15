@@ -34,11 +34,11 @@ void CheckCompute::setCoeff(std::vector<std::pair<double,double>> coeff)
 }
 
 /**
- * \brief start a new plot in a new window
+ * \brief open the forecast result in a new window
 */
-void CheckCompute::startPlot(double p1, double p2, double p3, double p4, int year)
+void CheckCompute::startPlot(double p1, double p2, double p3, double p4, int start, int end)
 {
-    computeForecast(p1,p2,p3,p4,year);
+    computeForecast(p1,p2,p3,p4,start,end);
     my_plot_->run();
 }
 
@@ -75,15 +75,25 @@ bool CheckCompute::operator[](sf::Vector2f mouse_coord) const
  * @param p2 percentage for the G/P ratio
  * @param p3 percentage for the E/G ratio
  * @param p4 percentage for the F/E ratio
- * @param year the year of end
+ * @param start the year of start
+ * @param end the year of end
 */
-void CheckCompute::computeForecast(double p1, double p2, double p3, double p4, int year)
+void CheckCompute::computeForecast(double p1, double p2, double p3, double p4, int start, int end)
 {
     my_plot_->resetData();
     int diff;
-    year <= 2020 ? diff = 2 : diff = year - 2019;
+    end <= start ? diff = 2 : diff = end - start + 1;
     std::vector<int> years(diff);
-    std::iota(years.begin(), years.end(), 2020);
+
+    if(end <= start)
+    {
+        std::iota(years.begin(), years.end(), 2022);
+    }
+
+    else
+    {
+        std::iota(years.begin(), years.end(), start); 
+    }
 
     PlotData rightSideEquation(sf::Color::Red,1);
     PlotData LeftSideEquation(sf::Color(255,128,28),1);

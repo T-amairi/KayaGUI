@@ -40,7 +40,7 @@ l'évolution de ces paramètres affectent l'évolution des émissions de CO2. Po
 Cette régression est effectué par un script R se basant sur les données disponibles dans le dossier
 data (pour les [sources](https://github.com/T-amairi/KayaGUI/blob/main/data/sources.txt)).
 
-Dans l'application, les boutons plots permettent donc d'afficher les données et les régressions linéaires. Concernant la partie **kaya identity scenario prognosticator**, elle permet d'obtenir un modèle simple pour prévoir les futures émissions de CO2, basé sur les options fourni par l'utilisateur dans les cases **%/YEAR** : une valeur positive signifie une évolution croissante et à l'inverse une valeur négative une évolution décroissante. Finalement, le bouton compute permet d'afficher deux courbes :
+Dans l'application, les boutons plots permettent donc d'afficher les données et les régressions linéaires. Concernant la partie **kaya identity scenario prognosticator**, elle permet d'obtenir un modèle simple pour prévoir les futures émissions de CO2, basé sur les options fourni par l'utilisateur dans les cases **%/YEAR** : une valeur positive signifie une évolution croissante et à l'inverse une valeur négative une évolution décroissante. Ce modèle sera calculé sur la période [YEAR OF START ; YEAR OF END] et pour des résultats cohérents, il est recommandé de commencer avec une année supérieure ou égale à 1965. Finalement, le bouton compute permet d'afficher deux courbes :
 
 - la courbe orange correspond à l'évolution du CO2 selon le scénario de l'utilisateur.
 - la courbe rouge correspond à l'évolution du CO2 selon un scénario sans aucun changement.

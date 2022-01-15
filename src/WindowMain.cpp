@@ -187,7 +187,7 @@ void WindowMain::prepareTextsRightPanel()
     std::vector<std::string> fact = {"Factors:",
     "- G/P is the production per person", "- E/G is the energy intensity of the economy",
     "- F/E is the carbon footprint of energy","Kaya Identity Scenario Prognosticator:",
-    "P:","G/P:","E/G:","F/E:","Year of end:","%/year"};
+    "P:","G/P:","E/G:","F/E:","Year of start:","Year of end:","%/year"};
 
     double offset = 40.0f;
 
@@ -198,7 +198,7 @@ void WindowMain::prepareTextsRightPanel()
             text.setStyle(sf::Text::Bold | sf::Text::Underlined);
         }
 
-        if(i > 4 && i != 9)
+        if(i > 4 && i < 9)
         {
             text.setString(fact[fact.size() - 1]);
             text.setPosition(getSize().x / 2.0 + 120, offset*i);
@@ -212,11 +212,12 @@ void WindowMain::prepareTextsRightPanel()
     }
     
     text.setString("(NUMERICAL VALUE ONLY!)");
-    text.setPosition(getSize().x / 2.0 + 225, (offset/1.4) * (fact.size() - 2));
+    text.setPosition(getSize().x / 2.0 + 225, (offset/1.4) * (fact.size() - 3));
     texts_.push_back(text);
 
-    text.setString("(GREATER OR EQUAL T0 2021!)");
-    text.setPosition(getSize().x / 2.0 + 225, offset * (fact.size() - 2));
+    text.setCharacterSize(20); 
+    text.setString("(For consistent results, choose a starting year\ngreater than or equal to 1965!)");
+    text.setPosition(getSize().x / 2.0 + 225, offset * (fact.size() - 3));
     texts_.push_back(text);
 }
 
@@ -245,7 +246,7 @@ void WindowMain::preparePlot()
 void WindowMain::prepareCompute()
 {
     std::shared_ptr<sf::Sprite> p_c(new sf::Sprite(textures_[1]));
-    p_c->setPosition(getSize().x / 2.0, 400.0f);
+    p_c->setPosition(getSize().x / 2.0, 445.0f);
     p_c->scale(0.22f, 0.22f);
     checkcompute_.setButton(p_c);
     checkcompute_.setCoeff(checkplot_.getCoeff());
@@ -265,7 +266,8 @@ void WindowMain::prepareTextFields()
         fields_.push_back(std::shared_ptr<TextField>(new TextField(5,getSize().x / 2.0 + 45,offset*i + 210)));   
     }
 
-    fields_.push_back(std::shared_ptr<TextField>(new TextField(5,getSize().x / 2.0 + 120,offset*4 + 210)));
+    fields_.push_back(std::shared_ptr<TextField>(new TextField(5,getSize().x / 2.0 + 140,offset*4 + 210)));
+    fields_.push_back(std::shared_ptr<TextField>(new TextField(5,getSize().x / 2.0 + 120,offset*5 + 210)));
 }
 
 /**
@@ -391,7 +393,7 @@ void WindowMain::run()
                     else if(res2)
                     {
                         auto input = getInput();
-                        checkcompute_.startPlot(input[0],input[1],input[2],input[3],input[4]);
+                        checkcompute_.startPlot(input[0],input[1],input[2],input[3],int(input[4]),int(input[5]));
                     }
 
                     outlineColor(true);
